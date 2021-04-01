@@ -6,7 +6,6 @@ from from_sqlite import get_dz, add_to_bd, desc
 from datetime import datetime
 from random import randint
 import pendulum
-import subs
 import from_sqlite
 import token
 
