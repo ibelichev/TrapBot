@@ -8,8 +8,11 @@ from random import randint
 import pendulum
 import subs
 import from_sqlite
+import token
+
+
 vk = vk_api.VkApi(
-    token="2b3a09a8ee15ddaf1e4d49472a6a8f54e37a1b35e107f9c2e70f35e254c1db90643a9a1001df30895608d")
+    token=token.tok)
 
 vk._auth_token()
 
@@ -76,11 +79,13 @@ for event in longpoll.listen():
             elif '((' in msg:
                 send(id, from_sqlite.sad)
             elif 'лучше не рассказывать' in msg or 'весьма сомнительно' in msg or 'сконцентрируйся и спроси опять' in msg:
-                send(id, from_sqlite.dontk[randint(0, len(from_sqlite.dontk) - 1)])
+                send(id, from_sqlite.dontk[randint(
+                    0, len(from_sqlite.dontk) - 1)])
             elif msg == 'перспективы не очень хорошие':
                 send(id, 'бывалo и хуже))')
             elif msg == '/kb' or msg == '/game' or '/%' in msg:
-                send(id, from_sqlite.cmda[randint(0, len(from_sqlite.cmda) - 1)])
+                send(id, from_sqlite.cmda[randint(
+                    0, len(from_sqlite.cmda) - 1)])
 
             elif msg == 'бот':
                 send(id, 'что?')
@@ -101,7 +106,8 @@ for event in longpoll.listen():
                     else:
                         date = float(str(d_t.day) + '.' + str(d_t.month))
                 elif msg.split()[3] == 'завтра':
-                    date = float(pendulum.tomorrow('Europe/Moscow').format('DD.MM'))
+                    date = float(pendulum.tomorrow(
+                        'Europe/Moscow').format('DD.MM'))
                 else:
                     date = msg.split()[3]
                 print(date)
@@ -116,37 +122,40 @@ for event in longpoll.listen():
                         s += str(m[i][0]) + '\n'
                     send(id, s)
             elif msg.split()[0].lower() == 'герцевич' or msg.split()[0].lower() == 'герцыч' or msg.lower() == 'герц' or msg.split()[0].lower() == 'герц' or msg.split()[0].lower() == 'Герц' or 'герц' in msg or 'Герц' in msg:
-                send(id, from_sqlite.gerz[randint(0, len(from_sqlite.gerz) - 1)])
+                send(id, from_sqlite.gerz[randint(
+                    0, len(from_sqlite.gerz) - 1)])
             elif msg.split()[0] == 'бт' and msg.split()[1] == 'гдз' and msg.split()[2] == 'по' and msg.split()[3] == 'русскому':
                 print('gdz')
-                x = 'https://megaresheba.ru/gdz/russkij-yazyk/10-klass/grekov/' + str(msg.split()[4]) + '-nomer'
+                x = 'https://megaresheba.ru/gdz/russkij-yazyk/10-klass/grekov/' + \
+                    str(msg.split()[4]) + '-nomer'
                 send(id, x)
             elif msg.split()[0] == 'бт' and msg.split()[1] == 'гдз' and msg.split()[2] == 'по' and msg.split()[3] == 'алгебре':
                 print('gdz')
-                x = 'https://megaresheba.ru/publ/reshebnik/algebra/10_11_klass_alimov/34-1-0-1964/' + str(msg.split()[4]) + '-nomer'
+                x = 'https://megaresheba.ru/publ/reshebnik/algebra/10_11_klass_alimov/34-1-0-1964/' + \
+                    str(msg.split()[4]) + '-nomer'
                 send(id, x)
             elif msg.split()[0] == 'бт' and msg.split()[1] == 'гдз' and msg.split()[2] == 'по' and msg.split()[3] == 'геометрии':
                 print('gdz')
-                x = 'https://gdz.ru/class-10/geometria/atanasyan-10-11/10-class-' + str(msg.split()[4]) + '/'
+                x = 'https://gdz.ru/class-10/geometria/atanasyan-10-11/10-class-' + \
+                    str(msg.split()[4]) + '/'
                 send(id, x)
             elif msg == 'обновления':
                 send(id, from_sqlite.updates)
             elif 'валентина вениаминовна' in msg or 'веньк' in msg:
-                send(id, from_sqlite.val[randint(0, len(from_sqlite.val) - 1)] + '\n https://m.vk.com/video358497250_456239683')
+                send(id, from_sqlite.val[randint(
+                    0, len(from_sqlite.val) - 1)] + '\n https://m.vk.com/video358497250_456239683')
             elif 'что задано' in msg:
-                send(id, get_dz(float(pendulum.tomorrow('Europe/Moscow').format('DD.MM'))))
+                send(id, get_dz(float(pendulum.tomorrow(
+                    'Europe/Moscow').format('DD.MM'))))
             elif 'с какого урока' in msg:
-                send(id, from_sqlite.lessons[randint(0, len(from_sqlite.lessons) - 1)])
+                send(id, from_sqlite.lessons[randint(
+                    0, len(from_sqlite.lessons) - 1)])
             elif 'хах' in msg or 'аха' in msg or 'ахха' in msg:
-                send_sticker(id, from_sqlite.st_ah[randint(0, len(from_sqlite.st_ah) - 1)])
-
-
-
-
+                send_sticker(id, from_sqlite.st_ah[randint(
+                    0, len(from_sqlite.st_ah) - 1)])
 
         # except AttributeError:
         #     print(' ', 'ошибка lower()', f'msg = {event.object.text}', sep='\n')
 
         except:
             print('а хуй знает что там не работает')
-
