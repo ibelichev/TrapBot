@@ -11,7 +11,7 @@ import tks
 
 
 vk = vk_api.VkApi(
-    token=token.tok)
+    token=tks.tok)
 
 vk._auth_token()
 
