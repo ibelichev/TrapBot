@@ -7,7 +7,7 @@ from datetime import datetime
 from random import randint
 import pendulum
 import from_sqlite
-import token
+import tks
 
 
 vk = vk_api.VkApi(
